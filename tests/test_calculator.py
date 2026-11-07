@@ -1,6 +1,15 @@
 import pytest
 
+from app import app
 from calculator_pkg import add, subtract, multiply, divide
+
+
+def test_calculate_api_add():
+    client = app.test_client()
+    response = client.post("/api/calculate", json={"a": 2, "b": 3, "operation": "add"})
+
+    assert response.status_code == 200
+    assert response.get_json()["result"] == 5.0
 
 
 def test_add_integers():
