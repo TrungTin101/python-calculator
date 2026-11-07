@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Minimal Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1 class="title">Minimal Calculator</h1>
+
+    <form method="post" class="form">
+      <div class="row">
+        <input name="a" placeholder="Number A" value="{{ a }}" inputmode="decimal" required>
+        <select name="operation" aria-label="Operation">
+          {% for key, (sym, _) in operations.items() %}
+            <option value="{{ key }}" {% if key==op_key %}selected{% endif %}>{{ sym }}</option>
+          {% endfor %}
+        </select>
+        <input name="b" placeholder="Number B" value="{{ b }}" inputmode="decimal" required>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Calculate</button>
+      </div>
+    </form>
+
+    <section class="output">
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% elif result is not none %}
+        <div class="result">{{ result }}</div>
+      {% else %}
+        <div class="hint">Enter numbers and choose an operation.</div>
+      {% endif %}
+    </section>
+
+    <footer class="attribution">Created by Microsoft Foundry · Minimal theme</footer>
+  </main>
+</body>
+</html>
