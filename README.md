@@ -38,3 +38,5 @@ pytest -q
 ## Attribution
 
 Repository created by Microsoft Foundry.
+
+*ci-trigger: 2026-11-07*
